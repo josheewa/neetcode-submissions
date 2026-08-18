@@ -14,29 +14,18 @@ class TimeMap:
     def get(self, key: str, timestamp: int) -> str:
         if not key in self.tmap: return ""
 
-
-        arr = self.tmap[key]
+        res = ""
+        arr = self.tmap.get(key, [])
         p = 0
         q = len(arr) - 1
 
         while p <= q:
-            if timestamp == 104: print(p, q)
             m = (p + q) // 2
-            if arr[m][1] == timestamp:
-                return arr[m][0]
-            if q - p <= 1:
-                if arr[q][1] <= timestamp:
-                    return arr[q][0]
-                if arr[p][1] <= timestamp:
-                    return arr[p][0]
-                else:
-                    return arr[p-1][0] if p-1 > -1 else ""
-            # if p == q:
-            #     return arr[p][0] if arr[p][1] < timestamp else arr[p-1][0] if p-1 > -1 else ""
 
-            if arr[m][1] < timestamp:
+            if arr[m][1] <= timestamp:
+                res = arr[m][0]
                 p = m + 1
             else:
                 q = m - 1
-        print(arr[p], arr[p-1], timestamp, p, q)
-        return ""
+
+        return res
