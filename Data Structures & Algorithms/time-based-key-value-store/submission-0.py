@@ -20,7 +20,6 @@ class TimeMap:
         q = len(arr) - 1
 
         while p <= q:
-            if timestamp == 104: print(p, q)
             m = (p + q) // 2
             if arr[m][1] == timestamp:
                 return arr[m][0]
