@@ -1,7 +1,6 @@
 class Solution:
     def leastInterval(self, tasks: List[str], n: int) -> int:
 
-        # d = [[0, i] for i in range(26)]
         freq = {}
         for task in tasks:
             if task in freq: freq[task] += 1
@@ -17,11 +16,9 @@ class Solution:
         while heap or q:
             if not heap:
                 t = max(t, q[0][2])
-                # t = q[0][2]
                 task = q.popleft()[:2]
                 heapq.heappush_max(heap, task)
                 continue
-            # else:
             task = heapq.heappop_max(heap)
             
             t += 1
@@ -32,5 +29,4 @@ class Solution:
                 task = q.popleft()[:2]
                 heapq.heappush_max(heap, task)
         
-
         return t
